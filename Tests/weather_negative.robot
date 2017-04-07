@@ -134,8 +134,8 @@ Test request weather for several city IDs - same id values
     ${city_dict}  get random city
     ${city_id}  Get From Dictionary  ${city_dict}  _id
     request weather for several cities  ${city_id}  ${city_id}
-    Status Code Should Be  200
-    ${responce}  get response json
+    Status Code Should Be  ${STATUSCODE 0}
+    Assert responce with error  ${STATUSCODE 0}  ${0_MESAGE}
 
 
 *** Keywords ***
