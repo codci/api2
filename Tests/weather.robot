@@ -1,10 +1,10 @@
 *** Settings ***
 Documentation     A test suite with a positive tests for api.openweathermap.org servises (call current weather data).
 
-Library           ../libraries/RequestDemoLibrary.py
-Library           ../libraries/PostgreLibrary.py
+Library           ../Libraries/RequestDemoLibrary.py
+Library           ../Libraries/PostgreLibrary.py
 Library           Collections
-Resource          Common.robot
+Resource          ../Resources/common.robot
 
 *** Variables ***
 ${STATUSCODE}     200

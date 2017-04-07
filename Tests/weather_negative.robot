@@ -1,10 +1,10 @@
 *** Settings ***
 Documentation     A test suite with a tests to assert  servises.
 
-Library           ../libraries/RequestDemoLibrary.py
-Library           ../libraries/PostgreLibrary.py
+Library           ../Libraries/RequestDemoLibrary.py
+Library           ../Libraries/PostgreLibrary.py
 Library           Collections
-Resource          Common.robot
+Resource          ../Resources/common.robot
 
 *** Variables ***
 ${NON_EXISTENT_CITY_NAME}  qwerty
