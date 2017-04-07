@@ -15,7 +15,6 @@ Status Code Should Be
 Assert several sities responce
     [Arguments]  ${first_exp_data}  ${second_exp_data}
     ${expected_data_lsit}  create list  ${first_exp_data}  ${second_exp_data}
-
     ${actual_data}  get response json
     ${actual_data_list}  Pop From Dictionary  ${actual_data}  list
     : FOR    ${act_data}    ${exp_data}    IN ZIP    ${actual_data_list}    ${expected_data_lsit}
@@ -23,7 +22,6 @@ Assert several sities responce
 
 Parse response
     [Arguments]  ${actual_data}
-
     ${id}  Get From Dictionary  ${actual_data}  id
     ${name}  Get From Dictionary  ${actual_data}  name
     ${sys}  Get From Dictionary  ${actual_data}  sys

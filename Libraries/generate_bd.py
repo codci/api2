@@ -39,28 +39,11 @@ class FillDBFromJson(object):
         cur.close()
         conn.close()
 
-    """
-    def parse_json2(self):
-        conn = psycopg2.connect(database='nbrb', user='postgres', password='qwerty321', host='localhost', port='5432')
-        cur = conn.cursor()
-        with open(self.json) as json_data:
-            d = json.load(json_data)
-
-            for line in d:
-                cur_id = line['Cur_ID']
-                date = line['Date']
-                cur_abbreviation = line['Cur_Abbreviation']
-                cur_scale = line['Cur_Scale']
-                cur_name = line['Cur_Name'].encode('utf-8').strip()
-                cur_official_rate = line['Cur_OfficialRate']
-                cur.execute("INSERT INTO currence VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(
-                    cur_id, date, cur_abbreviation, cur_scale, cur_name, cur_official_rate))
-                conn.commit()
-        cur.close()
-        conn.close()
-    """
-
     def parse_with_jsonpath(self):
+        """
+        NOT USED !!!
+        Fill database with values from json file - self.json (jsonpath)
+        """
         conn = psycopg2.connect(database=self.database, user=self.db_user, password=self.db_password, host=self.db_host,
                                 port=self.db_port)
         cur = conn.cursor()

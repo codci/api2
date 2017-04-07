@@ -1,5 +1,6 @@
 import requests
-from settings import *
+
+from Resources.settings import *
 
 
 class RequestDemoLibrary(object):

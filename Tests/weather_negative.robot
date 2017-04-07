@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     A test suite with a tests to assert  servises.
+Documentation     A test suite with negative tests to assert https://openweathermap.org/current servises.
 
 Library           ../Libraries/RequestDemoLibrary.py
 Library           ../Libraries/PostgreLibrary.py
@@ -106,11 +106,13 @@ Test request weather for several city IDs - one of the has non-existan value
     ${city_dict}  get random city
     ${city_id}  Get From Dictionary  ${city_dict}  _id
     request weather for several cities  ${NON_EXISTENT_CITY_ID}  ${city_id}
+    Status Code Should Be  ${STATUSCODE 0}
     Assert responce with error  ${STATUSCODE 0}  ${0_MESAGE}
 
 Test request weather for several city IDs - both cities have non-existan value
     [Documentation]  18. Call current weather data  for several city IDs both cities have non existent values
     request weather for several cities  ${NON_EXISTENT_CITY_ID}  ${NON_EXISTENT_CITY_ID_2}
+    Status Code Should Be  ${STATUSCODE 0}
     Assert responce with error  ${STATUSCODE 0}  ${0_MESAGE}
 
 Test request weather for several city IDs - one of the city has incorrect format
