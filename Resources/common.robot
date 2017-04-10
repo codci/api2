@@ -4,6 +4,14 @@ Documentation     A test suite with a tests to assert  servises.
 Library           ../libraries/RequestDemoLibrary.py
 Library           ../libraries/PostgreLibrary.py
 Library           Collections
+Library           SSHLibrary
+
+
+*** Variables ***
+${HOST}      qa-auto-07
+${USERNAME}  testuser
+${PASSWORD}  P@ssword123@!
+
 
 *** Keywords ***
 Status Code Should Be
@@ -66,3 +74,13 @@ Round coordinates
     ${value}  Evaluate  "%.2f" % ${value}
     ${value}  Evaluate  "%g" % ${value}
     [return]  ${value}
+
+Teardown action
+    Run Keyword If Test Failed   Connection by ssh
+
+Connection by ssh
+    Open Connection  ${HOST}
+    Login  ${USERNAME}  ${PASSWORD}
+    ${output}=  Execute Command  cat /home/testuser/logs/log.log | grep ERROR
+    Log  ${output}
+    Close Connection

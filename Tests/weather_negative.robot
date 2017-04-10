@@ -5,6 +5,7 @@ Library           ../Libraries/RequestDemoLibrary.py
 Library           ../Libraries/PostgreLibrary.py
 Library           Collections
 Resource          ../Resources/common.robot
+Test Teardown     Teardown action
 
 *** Variables ***
 ${NON_EXISTENT_CITY_NAME}  qwerty
