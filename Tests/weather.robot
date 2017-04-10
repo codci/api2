@@ -3,9 +3,10 @@ Documentation     A test suite with a positive tests for api.openweathermap.org 
 
 Library           ../Libraries/RequestDemoLibrary.py
 Library           ../Libraries/PostgreLibrary.py
+Library           ../Libraries/JSONSchemaValidator.py
 Library           Collections
 Resource          ../Resources/common.robot
-Test Teardown     Teardown action
+Test Teardown     Teardown weather
 
 *** Variables ***
 ${STATUSCODE}     200
@@ -58,3 +59,10 @@ Test request weather for several city IDs
     request weather for several cities  ${first_city_id}  ${second_city_id}
     Status Code Should Be  ${STATUSCODE}
     Assert several sities responce  ${first_city_dict}  ${second_city_dict}
+
+
+*** Keywords ***
+Teardown weather
+    ${responce}  get response json
+    validate schema openweathermap  ${responce}  Valid
+    Teardown action

@@ -5,7 +5,7 @@ Library           ../Libraries/RequestDemoLibrary.py
 Library           ../Libraries/PostgreLibrary.py
 Library           Collections
 Resource          ../Resources/common.robot
-Test Teardown     Teardown action
+Test Teardown     Teardown negative weather
 
 *** Variables ***
 ${NON_EXISTENT_CITY_NAME}  qwerty
@@ -150,3 +150,8 @@ Assert responce with error
     ${exp_responce}  Generate expected responce dict  ${err_code}  ${err_msg}
     ${act_responce}  get response json
     Should Be Equal  ${act_responce}  ${exp_responce}
+
+Teardown negative weather
+    ${responce}  get response json
+    validate schema openweathermap  ${responce}  Error
+    Teardown action

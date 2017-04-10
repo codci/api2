@@ -12,3 +12,7 @@ db_username = 'postgres'
 db_user_password = 'qwerty321'
 db_host = 'localhost'
 db_port = '5432'
+
+# Json schemas
+valid_json_schema = 'Resources\json_schemas\weather_valid_schema.json'
+error_json_schema = 'Resources\json_schemas\weather_error_schema.json'

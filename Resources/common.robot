@@ -3,6 +3,7 @@ Documentation     A test suite with a tests to assert  servises.
 
 Library           ../libraries/RequestDemoLibrary.py
 Library           ../libraries/PostgreLibrary.py
+Library           ../Libraries/JSONSchemaValidator.py
 Library           Collections
 Library           SSHLibrary
 
@@ -82,5 +83,5 @@ Connection by ssh
     Open Connection  ${HOST}
     Login  ${USERNAME}  ${PASSWORD}
     ${output}=  Execute Command  cat /home/testuser/logs/log.log | grep ERROR
-    Log  ${output}
+    Log  ${output}  ERROR
     Close Connection

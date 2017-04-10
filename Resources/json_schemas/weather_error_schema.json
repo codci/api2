@@ -1,0 +1,1 @@
+{"$schema": "http://json-schema.org/draft-04/schema#", "definitions": {}, "id": "weather error", "properties": {"cod": {"id": "/properties/cod", "type": "string"}, "message": {"id": "/properties/message", "type": "string"}}, "type": "object"}
