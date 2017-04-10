@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation     A test suite with a tests to assert  servises.
 
-Library           ../libraries/RequestDemoLibrary.py
-Library           ../libraries/PostgreLibrary.py
+Library           ../api_call_builders/RequestDemoLibrary.py
+Library           ../sql_query_builders/PostgreLibrary.py
 Library           ../Libraries/JSONSchemaValidator.py
 Library           Collections
 Library           SSHLibrary
@@ -13,6 +13,24 @@ ${HOST}      qa-auto-07
 ${USERNAME}  testuser
 ${PASSWORD}  P@ssword123@!
 
+${NON_EXISTENT_CITY_NAME}  qwerty
+${INVALID_CITY_NAME}  qwertyuiop
+${NON_EXISTENT_CITY_ID}  123123123
+${NON_EXISTENT_CITY_ID_2}  1234567801
+${INVALID_CITY_ID}  qwertyuiop
+${INVALID_CITY_ID_2}  qwertyuioa
+${INVALID_COUNTRY_CODE}  QWERTY
+${INVALID_COORDINATE}  1234.56789
+${STATUSCODE}     200
+${STATUSCODE 404}  404
+${STATUSCODE 400}  400
+${STATUSCODE 0}  0
+
+${404_MESAGE}  city not found
+${400_MESAGE_city_id_group}  ${INVALID_CITY_ID}  is not a city id
+${400_MESAGE_city_id_single}  ${INVALID_CITY_ID}  is not a city ID
+${400_MESAGE_coordanate}  ${INVALID_COORDINATE}  is not a float
+${0_MESAGE}  Error
 
 *** Keywords ***
 Status Code Should Be

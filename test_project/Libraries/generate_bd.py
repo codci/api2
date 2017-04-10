@@ -1,23 +1,23 @@
 import json
-
-import psycopg2 as psycopg2
 import re
+import psycopg2
+
 from jsonpath_rw import parse
-import psycopg2.extras
+from test_project.Resources.settings import *
 
 
 class FillDBFromJson(object):
     def __init__(self):
-        self.json = "city.list.json"
-        self.database = 'nbrb'
-        self.db_user = 'postgres'
-        self.db_password = 'qwerty321'
-        self.db_host = 'localhost'
-        self.db_port = '5432'
+        self.json = cities_list_sources
+        self.database = database_name
+        self.db_user = db_username
+        self.db_password = db_user_password
+        self.db_host = db_host
+        self.db_port = db_port
 
     def parse_json(self):
         """
-        Fill database with values from json file - self.json
+        Fill database with values from json file
         """
         conn = psycopg2.connect(database=self.database, user=self.db_user, password=self.db_password, host=self.db_host,
                                 port=self.db_port)
@@ -42,7 +42,7 @@ class FillDBFromJson(object):
     def parse_with_jsonpath(self):
         """
         NOT USED !!!
-        Fill database with values from json file - self.json (jsonpath)
+        Fill database with values from json file (jsonpath)
         """
         conn = psycopg2.connect(database=self.database, user=self.db_user, password=self.db_password, host=self.db_host,
                                 port=self.db_port)

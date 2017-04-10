@@ -1,13 +1,12 @@
 import requests
 
-from Libraries.JSONSchemaValidator import *
-from Resources.settings import *
+from test_project.Resources.settings import *
 
 
 class RequestDemoLibrary(object):
     def __init__(self):
         self.response = None
-        self.appid = '5cd28c042b69726f86aea45ec4a0fb38'
+        self.appid = app_id
 
     def request_weather_by_city_name(self, city_name):
         """

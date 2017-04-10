@@ -1,30 +1,12 @@
 *** Settings ***
 Documentation     A test suite with negative tests to assert https://openweathermap.org/current servises.
 
-Library           ../Libraries/RequestDemoLibrary.py
-Library           ../Libraries/PostgreLibrary.py
+Library           ../api_call_builders/RequestDemoLibrary.py
+Library           ../sql_query_builders/PostgreLibrary.py
+Library           ../Libraries/JSONSchemaValidator.py
 Library           Collections
 Resource          ../Resources/common.robot
 Test Teardown     Teardown negative weather
-
-*** Variables ***
-${NON_EXISTENT_CITY_NAME}  qwerty
-${INVALID_CITY_NAME}  qwertyuiop
-${NON_EXISTENT_CITY_ID}  123123123
-${NON_EXISTENT_CITY_ID_2}  1234567801
-${INVALID_CITY_ID}  qwertyuiop
-${INVALID_CITY_ID_2}  qwertyuioa
-${INVALID_COUNTRY_CODE}  QWERTY
-${INVALID_COORDINATE}  1234.56789
-${STATUSCODE 404}  404
-${STATUSCODE 400}  400
-${STATUSCODE 0}  0
-
-${404_MESAGE}  city not found
-${400_MESAGE_city_id_group}  ${INVALID_CITY_ID}  is not a city id
-${400_MESAGE_city_id_single}  ${INVALID_CITY_ID}  is not a city ID
-${400_MESAGE_coordanate}  ${INVALID_COORDINATE}  is not a float
-${0_MESAGE}  Error
 
 *** Test Cases ***
 Test request weather by name - non-existent value

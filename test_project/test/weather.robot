@@ -1,15 +1,12 @@
 *** Settings ***
 Documentation     A test suite with a positive tests for api.openweathermap.org servises (call current weather data).
 
-Library           ../Libraries/RequestDemoLibrary.py
-Library           ../Libraries/PostgreLibrary.py
+Library           ../api_call_builders/RequestDemoLibrary.py
+Library           ../sql_query_builders/PostgreLibrary.py
 Library           ../Libraries/JSONSchemaValidator.py
 Library           Collections
 Resource          ../Resources/common.robot
 Test Teardown     Teardown weather
-
-*** Variables ***
-${STATUSCODE}     200
 
 *** Test Cases ***
 Test request weather by name

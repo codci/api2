@@ -3,7 +3,8 @@ import os
 
 from jsonschema import ValidationError
 from jsonschema import validate
-from Resources.settings import error_json_schema, valid_json_schema
+
+from test_project.Resources.settings import error_json_schema, valid_json_schema
 
 
 class JSONSchemaValidator(object):

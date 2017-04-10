@@ -1,7 +1,7 @@
 import psycopg2
-from psycopg2 import extras
 
-from Resources.settings import *
+from psycopg2 import extras
+from test_project.Resources.settings import *
 
 
 class PostgreLibrary(object):
