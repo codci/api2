@@ -19,4 +19,4 @@ valid_json_schema = 'test_project\Resources\json_schemas\weather_valid_schema.js
 error_json_schema = 'test_project\Resources\json_schemas\weather_error_schema.json'
 
 # Json file to fill bd (Cities list)
-cities_list_sources = 'C:\Users\d.sokol\PycharmProjects\api2\test_project\Resources\city.list.json'
+cities_list_sources = 'C:\Users\d.sokol\PycharmProjects\\api2\\test_project\Resources\city.list.json'
