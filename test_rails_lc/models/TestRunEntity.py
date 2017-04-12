@@ -3,6 +3,3 @@ class TestRunEntity(object):
         self.suite_id = None
         self.name = None
         self.include_all = None
-
-
-

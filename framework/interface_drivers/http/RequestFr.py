@@ -65,9 +65,14 @@ class RequestFr(object):
         self.header.update(kwargs)
         return self
 
-    def set_json(self, **kwargs):
+    def set_json(self, obj):
         """
         """
         self.json = {}
-        self.json.update(kwargs)
+        if str(type(obj)).startswith("<class"):
+            self.json.update(**obj.__dict__)
+        else:
+            self.json.update(obj)
+
+        # self.json.update(kwargs)
         return self

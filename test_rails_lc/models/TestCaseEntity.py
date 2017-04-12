@@ -7,6 +7,3 @@ class TestCaseEntity(object):
         self.custom_preconds = None
         self.custom_steps = None
         self.custom_expected = None
-
-
-
