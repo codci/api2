@@ -13,7 +13,7 @@ Test test case life cicle
     ${suite_id}  create test suite  ${Project_id}
     ${section_id}  create section  ${Project_id}  ${suite_id}
     ${test_case_id}  create test case  ${section_id}
-    assert test case data  ${test_case_id}
+    assert test case data  ${test_case_id}  ${tc_dict}
     ${test_run_id}  create test run  ${Project_id}  ${suite_id}
     ${test_id}  Get test id from test run  ${test_run_id}
     set test result to test case  ${test_id}
@@ -21,6 +21,7 @@ Test test case life cicle
     delete test case  ${test_case_id}
     delete test suite section  ${section_id}
     delete test suite  ${suite_id}
+
 
 *** Keywords ***
 Create test suite
@@ -52,6 +53,7 @@ Create test case
     [Arguments]  ${section_id}
     ${tc_entity}  create test case entity
     ${tc_dict}  call method  ${tc_entity}  get_dict
+    set global variable  ${tc_dict}
 
     request add test case  ${section_id}  ${tc_dict}
     status code should be  200
@@ -61,11 +63,11 @@ Create test case
 
 Assert test case data
     [Documentation]  6. request to get test case by id and assert all fields are same with template
-    [Arguments]  ${test_case_id}
+    [Arguments]  ${test_case_id}  ${tc_dict}
     request get test case  ${test_case_id}
     status code should be  200
     ${responce}  get response json
-    # assert json data with что-то
+    dictionary should contain sub dictionary  ${responce}  ${tc_dict}
 
 Create test run
     [Documentation]  7-8. request to create test run, assert responce status code and get id of the created test run

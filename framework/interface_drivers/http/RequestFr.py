@@ -9,7 +9,6 @@ class RequestFr(object):
         self.body = None
         self.json = None
         self.auth = None
-
         self.response = None
 
     def get_response_status_code(self):
@@ -52,27 +51,16 @@ class RequestFr(object):
         return self
 
     def set_body(self, **kwargs):
-        """
-        """
         self.body = {}
         self.body.update(kwargs)
         return self
 
     def set_header(self, **kwargs):
-        """
-        """
         self.header = {}
         self.header.update(kwargs)
         return self
 
     def set_json(self, obj):
-        """
-        """
         self.json = {}
-        if str(type(obj)).startswith("<class"):
-            self.json.update(**obj.__dict__)
-        else:
-            self.json.update(obj)
-
-        # self.json.update(kwargs)
+        self.json.update(obj)
         return self
