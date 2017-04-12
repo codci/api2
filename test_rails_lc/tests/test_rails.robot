@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Suite description
 Library           ../api_call_builders/RequestTR.py
+Library           ../models/values_set.py
 Library           Collections
 
 *** Variables ***
@@ -25,7 +26,10 @@ Test test case life cicle
 Create test suite
     [Documentation]  1-2. request to create suite, assert responce status code and get id of the created suite
     [Arguments]  ${project_id}
-    request add suite  ${project_id}
+    ${ts_entity}  create test suite entity
+    ${ts_dict}  call method  ${ts_entity}  get_dict
+
+    request add suite  ${project_id}  ${ts_dict}
     status code should be  200
     ${responce}  get response json
     ${suite_id}  Get From Dictionary  ${responce}  id
@@ -34,7 +38,10 @@ Create test suite
 Create section
     [Documentation]  3-4. request to create section in suite, assert responce status code and get id of the created section
     [Arguments]  ${project_id}  ${suite_id}
-    request add section  ${project_id}  ${suite_id}
+    ${section_entity}  create test section entity  ${suite_id}
+    ${section_dict}  call method  ${section_entity}  get_dict
+
+    request add section  ${project_id}  ${section_dict}
     status code should be  200
     ${responce}  get response json
     ${section_id}  Get From Dictionary  ${responce}  id
@@ -43,7 +50,10 @@ Create section
 Create test case
     [Documentation]  5. request to create test case, assert responce status code and get id of the created test case
     [Arguments]  ${section_id}
-    request add test case  ${section_id}
+    ${tc_entity}  create test case entity
+    ${tc_dict}  call method  ${tc_entity}  get_dict
+
+    request add test case  ${section_id}  ${tc_dict}
     status code should be  200
     ${responce}  get response json
     ${test_case_id}  Get From Dictionary  ${responce}  id
@@ -60,7 +70,10 @@ Assert test case data
 Create test run
     [Documentation]  7-8. request to create test run, assert responce status code and get id of the created test run
     [Arguments]  ${project_id}  ${suite_id}
-    request add test run  ${project_id}  ${suite_id}
+    ${run_entity}  create test run entity  ${suite_id}
+    ${run_dict}  call method  ${run_entity}  get_dict
+
+    request add test run  ${project_id}  ${run_dict}
     status code should be  200
     ${responce}  get response json
     ${test_run_id}  Get From Dictionary  ${responce}  id
@@ -69,7 +82,11 @@ Create test run
 Set test result to test case
     [Documentation]  9. request to add results of test case, assert responce status code
     [Arguments]  ${test_id}
-    request add test results  ${test_id}
+    ${result_entity}  create test result entity
+    ${result_dict}  call method  ${result_entity}  get_dict
+
+    request add test results  ${test_id}  ${result_dict}
+    ${responce}  get response json
     status code should be  200
 
 Delete test run

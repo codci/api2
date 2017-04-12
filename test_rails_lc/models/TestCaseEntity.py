@@ -1,4 +1,7 @@
-class TestCaseEntity(object):
+from test_rails_lc.models.BaseEntity import BaseEntity
+
+
+class TestCaseEntity(BaseEntity):
     def __init__(self):
         self.title = None
         self.template_id = None

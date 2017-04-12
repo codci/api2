@@ -22,7 +22,7 @@ def create_test_case_entity():
 
 def create_test_result_entity():
     tre = TestResultEntity()
-    tre.status_id = get_random_digit(1, 3)
+    tre.status_id = get_random_digit(1, 2)
     tre.comment = get_unique_string_from_template("comment: {}")
     return tre
 

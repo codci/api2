@@ -18,58 +18,58 @@ class RequestTR(RequestFr):
         """
         return server_addr + api_path.format(**kwargs)
 
-    def request_add_suite(self, project_id):
+    def request_add_suite(self, project_id, ts_body):
         """
         send api request to create suite by project id, url:
         https://testrail.a1qa.com/index.php?/api/v2/add_suite/:project_id
         """
         self.url = self._generate_url(api_add_suite, project_id=project_id)
         self.set_header(**content_type)
-        self.set_json(create_test_suite_entity())
+        self.set_json(ts_body)
         self.send_post()
         return self
 
-    def request_add_section(self, project_id, suite_id):
+    def request_add_section(self, project_id, section_body):
         """
         send api request to create section by project id and suite_id, url:
         https://testrail.a1qa.com/index.php?/api/v2/add_section/:project_id
         """
         self.url = self._generate_url(api_add_section, project_id=project_id)
         self.set_header(**content_type)
-        self.set_json(create_test_section_entity(suite_id))
+        self.set_json(section_body)
         self.send_post()
         return
 
-    def request_add_test_case(self, section_id):
+    def request_add_test_case(self, section_id, tc_body):
         """
         send api request to create test case by section_id, url:
         https://testrail.a1qa.com/index.php?/api/v2/add_case/:section_id
         """
         self.url = self._generate_url(api_add_tc, section_id=section_id)
         self.set_header(**content_type)
-        self.set_json(create_test_case_entity())
+        self.set_json(tc_body)
         self.send_post()
         return self
 
-    def request_add_test_run(self, project_id, suite_id):
+    def request_add_test_run(self, project_id, run_body):
         """
         send api request to create test run by project_id, suite_id:
         https://testrail.a1qa.com/index.php?/api/v2/add_run/:project_id
         """
         self.url = self._generate_url(api_add_run, project_id=project_id)
         self.set_header(**content_type)
-        self.set_json(create_test_run_entity(suite_id))
+        self.set_json(run_body)
         self.send_post()
         return self
 
-    def request_add_test_results(self, test_id):
+    def request_add_test_results(self, test_id, result_body):
         """
         send api request to set test results for all test in test run by run_id:
         https://testrail.a1qa.com/index.php?/api/v2/add_results/:run_id
         """
         self.url = self._generate_url(api_add_result, test_id=test_id)
         self.set_header(**content_type)
-        self.set_json(create_test_result_entity())
+        self.set_json(result_body)
         self.send_post()
         return self
 
@@ -143,11 +143,20 @@ class RequestTR(RequestFr):
         self.send_get()
         return self
 
-# a = RequestTestRails()
+
+entity = create_test_case_entity()
+body = entity.get_dict()
+print body
+
+# aa = RequestTR()
+# aa.request_add_test_case(749)
+
+a = RequestTR()
 # a.request_add_suite(2)
-# a.request_add_section(2, 1074)
-# a.request_add_test_case(749)
+# a.request_add_section(2, 1083)
+# a.request_add_test_case(756, body) 849
 # a.request_add_test_run(2, 1074)
 
-# print a.get_response_status_code()
-# print a.get_response_json()
+a.request_get_test_case(849)
+print type(a.get_response_json())
+
