@@ -43,11 +43,16 @@ class RequestFr(object):
             return False
 
     def send_post(self):
-        self.response = requests.post(url=self.url, data=self.body, json=self.json, auth=self.auth, headers=self.header)
+        self.response = requests.post(
+            url=self.url, data=self.body, json=self.json,
+            auth=self.auth, headers=self.header
+        )
         return self
 
     def send_get(self):
-        self.response = requests.get(url=self.url, auth=self.auth, headers=self.header)
+        self.response = requests.get(
+            url=self.url, auth=self.auth, headers=self.header
+        )
         return self
 
     def set_body(self, **kwargs):

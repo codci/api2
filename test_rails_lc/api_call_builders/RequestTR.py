@@ -1,7 +1,7 @@
 from framework.interface_drivers.http.RequestFr import RequestFr
-from test_rails_lc.models.values_set import create_test_suite_entity, create_test_section_entity, \
-    create_test_case_entity, create_test_run_entity, create_test_result_entity
-from test_rails_lc.settings import *
+from test_rails_lc.settings import user, password, server_addr, api_add_suite, content_type, api_del_suite,\
+    api_get_tests_by_run_id, api_add_section, api_del_tc, api_add_result, api_add_run, api_add_tc, api_del_run,\
+    api_del_section, api_get_suite_by_id, api_get_tc_by_id
 
 
 class RequestTR(RequestFr):
@@ -142,21 +142,3 @@ class RequestTR(RequestFr):
         self.set_header(**content_type)
         self.send_get()
         return self
-
-
-entity = create_test_case_entity()
-body = entity.get_dict()
-print body
-
-# aa = RequestTR()
-# aa.request_add_test_case(749)
-
-a = RequestTR()
-# a.request_add_suite(2)
-# a.request_add_section(2, 1083)
-# a.request_add_test_case(756, body) 849
-# a.request_add_test_run(2, 1074)
-
-a.request_get_test_case(849)
-print type(a.get_response_json())
-

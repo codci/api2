@@ -1,7 +1,7 @@
 import psycopg2
 
 from psycopg2 import extras
-from test_project.Resources.settings import *
+from test_project.Resources.settings import database_name, db_username, db_user_password, db_port, db_host
 
 
 class PostgreLibrary(object):
