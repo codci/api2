@@ -47,4 +47,3 @@ def create_test_suite_entity():
     tse.description = get_unique_string_from_template("suite_description: {}")
     tse.name = get_unique_string_from_template("suite_name - {}")
     return tse
-

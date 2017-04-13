@@ -3,7 +3,8 @@ import re
 import psycopg2
 
 from jsonpath_rw import parse
-from test_project.Resources.settings import *
+from test_project.Resources.settings import cities_list_sources, database_name, db_host, db_port, db_user_password,\
+    db_username
 
 
 class FillDBFromJson(object):
@@ -67,5 +68,6 @@ class FillDBFromJson(object):
         cur.close()
         conn.close()
         return self
+
 
 FillDBFromJson().parse_json()

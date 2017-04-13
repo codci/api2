@@ -1,6 +1,7 @@
 import requests
 
-from test_project.Resources.settings import *
+from test_project.Resources.settings import app_id, by_city_id, by_city_name, by_city_name_country, by_location,\
+    fo_group_by_city_id
 
 
 class RequestDemoLibrary(object):
